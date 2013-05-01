@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+<?php
+include '../includes/headbase.php';
+?>
+</head>
+<?php
+include '../includes/sessorduser.php';
+?>
+<body onload="clock()">
+<div id="container">
+<div id="content-container">
+<div id="clockdiv">&nbsp;</div>   <!-- end of clockdiv -->
+<?php
+ob_start();
+include 'clockdivs.php';
+include '../includes/mainnavpara.php';
+ob_end_flush();
+?>
+<div id="sideLeft">
+<div class="leftPanel1">
+<?php
+include '../scripts_php/querycurrannivs.php';
+?>
+</div>  <!-- end of leftPanel1 -->
+<div class="leftPanel2">
+<?php
+include '../scripts_php/querycurrappnts.php';
+?>
+</div>  <!-- end of leftPanel2 -->
+</div>    <!-- end of sideLeft -->
+<div id="tasklist">
+<?php
+include '../scripts_php/querycurrtasks.php';
+?>
+<form id="actpost" name="actpost" action="maincurrq.php" method="post">
+<p>
+   <input type="submit" name="submit" value="Anniversaries" title="Add or Change your Anniversaries"  />
+   &nbsp;
+   <input type="submit" name="submit" value="Appointments" title="Add or Change your Appointments" />
+   &nbsp;
+   <input type="submit" name="submit" value="My Tasks" title="Display all of your Tasks irrespective of date" />
+   &nbsp;
+   <input type="submit" name="submit" value="New Task" title="Add a brand new Task" />
+   &nbsp;
+   <input type="submit" name="submit" value="Copy Tasks" title="Click to copy over all of your uncompleted Tasks to today" />
+   <br />
+   </form>
+</p>
+</div>  <!-- end of tasklist div -->
+<div id="tinyspacer">&nbsp;</div>
+
+</div>  <!-- end of mainnav div -->
+<div id="footer">
+<?php echo $_SESSION['footxt']; ?>
+</div>  <!-- end of footer -->
+</div>   <!-- end of container div -->
+</body>
+</html>

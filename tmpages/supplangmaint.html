@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+<?php
+include '../includes/headbase.php';
+?>
+</head>
+<?php
+include '../includes/sesschecksuper.php';
+?>
+<body onload="clock();">
+<div id="container">
+<div id="content-container">
+<div id="clockdiv">&nbsp;</div>   <!-- end of clockdiv -->
+<?php
+ob_start();
+include 'clockdivs.php';
+include '../includes/mainnavpara.php';
+include '../scripts_php/fetchsupplang.php';
+ob_end_flush();
+?>
+</div>   <!-- end of mainnav -->
+<div id="footer">
+<?php echo $_SESSION['footxt']; ?>
+</div>  <!-- end of footer -->
+</div>   <!-- end of container div -->
+</body>
+</html>

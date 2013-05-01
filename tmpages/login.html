@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" dir="ltr">
+<head>
+	<title>Time Manager Log-in</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="rob stone" />
+	<meta name="copyright" content="rob stone" />
+	<style type="text/css" media="screen">
+		@import url( tmgrstyles.css );
+	</style>
+	<script type="text/javascript" src="../scripts_js/xhrcall.js"></script>
+<script type="text/javascript">
+function setupEvtListener ()  {
+  var fLogon = document.getElementById('logonCode');
+  fLogon.addEventListener("keyup", cCase, false);
+  fLogon.addEventListener("change", doChangeL, false);
+  var fUsrpass = document.getElementById('userpass');
+  fUsrpass.addEventListener("change", doChangeP, false);
+};
+function cCase ()  {
+	var fLogon = document.getElementById('logonCode');
+	var vl = fLogon.value.toUpperCase();
+	fLogon.value = vl;
+};
+function doChangeL ()  {
+	doit('logoncode','replaceme');
+};
+function doChangeP ()  {
+	doit('userpass','passreplace');
+};
+
+function clearAjaxFields() {
+	var afield = document.getElementById('replaceme');
+	afield.innerHTML = "";
+	var bfield = document.getElementById('passreplace');
+	bfield.innerHTML = "";
+	setFocus('logoncode');
+};
+function doit(fieldName, targetDiv){
+var ajax = new sack();
+	var form = document.getElementById('logon');
+	if (fieldName == "logoncode")  {
+		ajax.setVar("logonCode", form.logonCode.value); // recommended method of setting data to be parsed.
+	};
+	if (fieldName == "userpass")  {
+		ajax.setVar("userPass", form.userpass.value);
+	};
+ 	ajax.requestFile = "../scripts_php/loginval.php";
+	ajax.method = "POST";
+	ajax.element = targetDiv;
+	ajax.runAJAX();
+}
+</script>
+</head>
+<body onload="setupEvtListener();">
+<div id="container">
+<div id="content_container">
+<div id="clockdiv">&nbsp;</div>
+<div id="timemandiv"><img src="../images/timeman.png" alt="Time Manager Logo" width="600px" height="90px" /></div>
+<div id="tinyspacer"></div>
+<div id="alertLayer" class="alertBoxStyle"></div>
+<script type = "text/javascript" src="../scripts_js/inlinealert.js">
+</script>
+<div id="mainnav">
+<?php
+session_start();
+$_SESSION['pt'] = 'First, please provide your Log-in details';
+include '../includes/mainnavpara.php';
+?>
+<form id="logon" method="post" action="../scripts_php/dologin.php">
+<fieldset>
+<legend>Your Details</legend>
+<input type="hidden" name="sesscheck" id="sesscheck" value="<?php echo substr(base_convert(mt_rand(60466176, 2147483647), 10, 36), 0, 9); ?>" />
+<div><label for="logoncode">Your Log-on ID :</label>
+	<input type="text" id="logonCode" name="logonCode" autofocus="autofocus" required="required" pattern="[A-Z]{1,4}" size="4" maxlength="4"  />
+	<div id="replaceme"></div>
+</div><br />
+<div><label for="userpass">Password :</label>
+	<input type="password" id="userpass" name="userpass" size="40" maxlength="40"  />
+	<div id="passreplace"></div>
+</div><br />
+</fieldset>
+<div>
+<input class="buttonSubmit" type="submit" name="submit" value="LOG ON" />
+<input class="buttonReset"  type="reset"  name="reset"  value="Reset" onclick="clearAjaxFields();" />
+</div>
+</form>
+</div>
+<div id="footer">
+<?php include '../includes/footer.inc'; ?>
+</div>
+</div>    <!-- end of content_container -->
+</div>
+</body>
+</html>

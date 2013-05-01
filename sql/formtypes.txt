@@ -1,0 +1,9 @@
+en-GB|L|Log-on|0
+en-GB|P|Password|0
+en-GB|C|Controller|0
+en-GB|D|Dashboard|0
+en-GB|H|Help|0
+en-GB|O|Log Off|0
+en-GB|S|Maintenance|0
+en-GB|T|Transactions|0
+en-GB|M|Menu|0

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+<?php
+include '../includes/headbase.php';
+?>
+</head>
+<body onload="clock();">
+<div id="container">
+<div id="content-container">
+<div id="clockdiv">&nbsp;</div>   <!-- end of clockdiv -->
+<?php
+$foot_text = $_SESSION['footxt'];
+ob_start();
+include 'clockdivs.php';
+include '../scripts_php/logout.php';
+ob_end_flush();
+echo '</div><div id="footer">' . $foot_text . '</div>';
+?>
+</div>   <!-- end of container div -->
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+<?php
+include '../includes/headbase.php';
+?>
+<script language="JavaScript" type="text/javascript" src="../scripts_js/jquery.js">
+   </script>
+<script language="JavaScript" type="text/javascript" src="../scripts_js/evalpword.js">
+   </script>
+</head>
+<body onload="clock()">
+<div id="container">
+<div id="content-container">
+<div id="clockdiv">&nbsp;</div>   <!-- end of clockdiv -->
+<?php
+ob_start();
+include 'clockdivs.php';
+include '../includes/mainnavpara.php';
+ob_end_flush();
+?>
+<form id="pwordchange" name="pwordchange" action="../scripts_php/chgpword.php" method="post">
+<fieldset>
+<legend><?php echo $_SESSION['flegend']; ?></legend>
+<input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>" />
+<div id="organiza">
+<div>
+<div id="controlaNome">
+<label for="inputPassword">
+<?php
+$label_list = array();
+$field_label = NULL;
+if ( (isset($_SESSION['fieldarr']) ) && ($_SESSION['labcount'] > 0)  )  {
+	$label_list = $_SESSION['fieldarr'];
+	$field_label = $label_list['inputPassword'];
+}
+echo $field_label . ' : ';
+?>
+</label>
+<input type="password" id="inputPassword" name="inputPassword" autofocus="autofocus" required="required" size="20" maxlength="40" />
+</div>
+<div id="complexity" class="default"><?php echo $_SESSION['tabcapt']; ?></div>
+</div><br />
+<div id="controlaSenha">
+<label for="confirmPword">
+<?php
+$label_list = array();
+$field_label = NULL;
+if ( (isset($_SESSION['fieldarr']) ) && ($_SESSION['labcount'] > 0)  )  {
+	$label_list = $_SESSION['fieldarr'];
+	$field_label = $label_list['confirmPword'];
+}
+echo $field_label . ' : ';
+?>
+</label>
+<input type="password" id="confirmPword" name="confirmPword" required="required" size="20" maxlength="40" />
+</div>
+<div class="clearboth">
+</div>
+</div>    <!-- end of organiza-->
+</fieldset>
+<p>
+<input type="submit" name="submit" value="CHANGE IT" class="buttonSubmit" />
+<input type="reset"  name="reset"  value="Reset" class="buttonReset" />
+</p>
+</form>
+</div>   <!-- end of mainnav -->
+<div id="footer">
+<?php echo $_SESSION['footxt']; ?>
+</div>  <!-- end of footer -->
+</div>   <!-- end of container div -->
+</body>
+</html>

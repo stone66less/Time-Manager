@@ -1,0 +1,54 @@
+1|en-GB|Erroneous value passed as next called form.||1|
+2|en-GB|No Post array||1|
+3|en-GB|Strange characters found in the Logon entered.|Your Log-in ID has a maximum of four alphabetic characters and upon verifying the data entered, it was noticed that characters other than in the range A -> Z were used. Note that Time Manager automatically converts the data to uppercase.|1|
+4|en-GB|Error occurred selecting user, OR invalid ID used.||1|
+5|en-GB|Sorry, but you are no longer an active user of this system.||1|
+6|en-GB|Invalid Password entered.||1|
+7|en-GB|ERROR. Mcrypt initialisation failed for decryption.||1|
+8|en-GB|Unable to find group||1|
+9|en-GB|Session check empty||1|
+10|en-GB|Unexplained error inserting into logged_users.||1|
+11|en-GB|Length of text entered greater than may be stored in receiving column.|You have entered too much text. Reduce the quantity of text being entered and try again.|1|
+13|en-GB|Illegal characters found in this Log-on ID.|Only the characters A to Z may be used for a Log-on ID.|1|
+14|en-GB|Insufficient variables passed for processing this item.|Either a mandatory field is missing from entered data or there is a bug in this form.|1|
+15|en-GB|Database error inserting into table time_users.||1|
+16|en-GB|Unable to update row.||1|
+17|en-GB|Internal error. Unable to find a row using hidden field.||1|
+18|en-GB|You may NOT alter the Log-on Id of an existing user.||1|
+19|en-GB|The month value must be in the range of one (1) to twelve (12).||1|
+20|en-GB|The day value entered is not valid for the month used.||1|
+21|en-GB|Database error inserting into table anni_versaries.||1|
+22|en-GB|Invalid characters found inside a text string.|You may not enter non-alphabetical characters such as parentheses inside of text.|1|
+23|en-GB|Dates must be entered in an acceptable format.|Use a conventional English language format such as dd/mm/yyyy.|1|
+24|en-GB|The date entered is invalid.|The date entered does not conform to the rules for a valid date. There are 30 days in April, June, September and November, 31 for all the other months except February which has 29 days when it is a leap year, otherwise 28.|1|
+25|en-GB|Hours must be in the range of zero (0) to 23.||1|
+26|en-GB|Minutes must be in the range of zero (0) to 59.||1|
+27|en-GB|Value entered as the UTC offset is incorrect.||1|
+28|en-GB|The number entered as your telephone extension is invalid.||1|
+29|en-GB|Invalid E-mail address entered.||1|
+30|en-GB|You may not back-date a task for more than seven (7) days.||2|
+31|en-GB|Task Classification NOT in [A,B,C].||2|
+32|en-GB|Not advisable to allocate a Task Sequence Number that is zero, negative or > 99||2|
+34|en-GB|You must enter you new password in BOTH fields.||2|
+35|en-GB|Your new passwords do not match. Please enter both passwords again.||2|
+36|en-GB|ERROR. Encryption of password failed. Choose another password and try again.|Occasionally encryption algorithims fail to properly encrypt a string of letters, numbers, etc., due to the combination of characters entered or the choice of the encryption key. Try and choose another sequence of characters to use as your password.|2|
+37|en-GB|Unable to update user with new password.||2|
+38|en-GB|You must enter a User Name. This field cannot be left blank.||2|
+39|en-GB|Estimated appointment duration must be a value in minutes.||1|
+40|en-GB|Database error inserting into table appoint_ments.||1|
+9000|en-GB|[RESERVED FOR CONTROLLER AND OTHER INTERNAL FUNCTIONS]||0|
+9001|en-GB|Log-in Failure. Unable to locate name of log-in form from the database.||0|
+9002|en-GB|No password change form established for TimeManager||0|
+9003|en-GB|No System Administrator Menu form established for TimeManager||0|
+9004|en-GB|No dashboard form established for TimeManager users||0|
+9005|en-GB|Processing Error whilst determining next action||0|
+9006|en-GB|Unable to find menu item by its internal id||0|
+9007|en-GB|Navigation reference NOT passed||0|
+9008|en-GB|Column headers for Table are NOT JSON encoded.||0|
+9009|en-GB|No Table data defined for this form.||0|
+9010|en-GB|Database error. Unable to query table||0|
+9011|en-GB|Unable to locate header column descriptions.||0|
+41|en-GB|Error Number entered is out of range.||0|
+42|en-GB|Form Error. Message language code not passed.||0|
+12|en-GB|Database insert failed. Unable to insert a new row in this table.|Please advise your System Administrator.|1|
+33|en-GB|The number of days entered to force password change out of range 1 -- 186.||2|
