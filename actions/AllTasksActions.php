@@ -6,6 +6,11 @@ function list_current_tasks ($dbc, $tu_id, $lim_it, $task_nf)  {
 	$date_from = todays_date('yyyymmdd');
 	$is_yes = $_SESSION['yestxt'];
 	$is_non = $_SESSION['nontxt'];
+	if ( isset($_SESSION['fwdto']) )  {
+		$maint_go = (int)$_SESSION['fwdto'];
+	}  else  {
+		$maint_go = 0;
+	}
 	$tquery = "SELECT * FROM all_tasks WHERE tu_id = $tu_id AND TO_CHAR(todo_date,'YYYYMMDD') = '$date_from'
 			ORDER BY sequence_no, task_class LIMIT $lim_it";
 	$tqres = pg_query($dbc, $tquery);
@@ -23,7 +28,7 @@ function list_current_tasks ($dbc, $tu_id, $lim_it, $task_nf)  {
 			if ( $alt_rc > 0 )  {
 				$alt_resch = $alt_resch . ' / ' . $alt_rc;
 			}
-			echo '<tr><td>' . $alt_seqn . '</td><td class="centred">' . $alt_class . '</td><td>' . $alt_desc . '</td><td><a href="toggcompl.html?altidd='.$alt_id.'" title="Click to Toggle Completed Status">' . $alt_compl . '</a></td><td>' . $alt_resch . '</td></tr>';
+			echo '<tr><td>' . $alt_seqn . '</td><td class="centred">' . $alt_class . '</td><td><a href="../index.php?act=nav&nav=' . $maint_go . '&recid=' . $alt_id . '">' . $alt_desc . '</a></td><td><a href="toggcompl.html?altidd='.$alt_id.'" title="Click to Toggle Completed Status">' . $alt_compl . '</a></td><td>' . $alt_resch . '</td></tr>';
 		}
 	}
 }

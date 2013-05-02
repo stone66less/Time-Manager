@@ -9,6 +9,8 @@
    if ( !$opened )   {
    	echo 'Unable to open file ' . $fname;
    	}  else  {
+   		$wstring = $logdate . ' POST Array' . PHP_EOL;
+      	fwrite($opened, $wstring);
       foreach ($_POST as $key => $value)  {
       	if ( is_array($value)  )   {
       		foreach ($value as $seckey => $secvalue)  {
@@ -20,6 +22,8 @@
       		fwrite($opened, $wstring);
       	}
       }
+      $wstring = $logdate . ' GET Array' . PHP_EOL;
+      	fwrite($opened, $wstring);
       foreach ($_GET as $key => $value)  {
       	if ( is_array($value)  )   {
       		foreach ($value as $seckey => $secvalue)  {

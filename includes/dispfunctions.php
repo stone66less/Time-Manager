@@ -114,6 +114,22 @@ function do_prev_block () {
 }
 
 function table_list_end ($curr_page, $max_pages, $maint_go)  {
+	$buttn_array = array();
+	$buttn_count = 0;
+	if ( isset($_SESSION['buttarr']))  {
+		$buttn_array = $_SESSION['buttarr'];
+		$buttn_count = $_SESSION['buttcount'];
+	}
+	if (array_key_exists('submit', $buttn_array))  {
+		$submt_value = $buttn_array['submit'];
+	}  else  {
+		$submt_value = 'ADD NEW';
+	}
+	if (array_key_exists('title', $buttn_array))  {
+		$submt_title = $buttn_array['title'];
+	}  else  {
+		$submt_title = 'Click to add a new something';
+	}
 	echo '</tbody></table><p>' . PHP_EOL;
 	if ( ($curr_page > 1) && ($curr_page <= $max_pages) )  {
 		echo '<img src="../images/sblu_w.gif" style="margin-right: 12px;" width="32" height="32" alt="Click to go back one page" onclick="doitPrev();">';
@@ -127,7 +143,7 @@ function table_list_end ($curr_page, $max_pages, $maint_go)  {
 		echo '<img src="../images/sqbkgrnd.png" style="margin-left: 12px;" width="32" height="32" />';
 	}
 	echo '</p><p><form name="dummyone" id="dummyone" action="../index.php?act=nav&nav=' . $maint_go . '&recid=0"' . ' method="POST">';
-	echo '<input type="hidden" id="goTo" name = "goTo" value="' . $maint_go . '" /><p><input type="submit" name="submit" value="ADD NEW" class="addB" />';
+	echo '<input type="hidden" id="goTo" name = "goTo" value="' . $maint_go . '" /><input type="submit" name="submit" value="' . $submt_value . '" title="' . $submt_title . '" class="addB" />';
 	echo '</form></p>';	
 }
 

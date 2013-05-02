@@ -11,6 +11,8 @@ $maint_go = 0;
 $tab_capt = NULL;
 $thtd_array = array();
 $thtd_count = 0;
+$buttn_array = array();
+$buttn_count = 0;
 $first_time = TRUE;
 $alt_row = TRUE;
 $item_count = 0;
@@ -22,6 +24,10 @@ if ( isset($_SESSION['navrefn']) && (strlen($_SESSION['navrefn']) > 0) )  {
 }
 if ( isset($_SESSION['fwdto']) )  {
 	$maint_go = (int)$_SESSION['fwdto'];
+}
+if ( isset($_SESSION['buttarr']))  {
+	$buttn_array = $_SESSION['buttarr'];
+	$buttn_count = $_SESSION['buttcount'];
 }
 ob_start();
 $dpgconn = conn_db();
@@ -46,9 +52,9 @@ if (!$result)   {
 	 	   echo '<tr><td class="centred"><a href="../index.php?act=nav&nav=' . $maint_go . '&alfid=' . $lang_code . '">' . $lang_code . '</a></td><td>' . $lang_name . '</td><td>' . $well_text . '</td><td>' . $fwel_text . '</td></tr>';
 	   }
 	   echo '</tbody></table>' . PHP_EOL;
-		echo '<p><form name="dummyone" id="dummyone" action="../index.php" method="GET">';
-	 	echo '<input type="submit" name="submit" value="ADD NEW" class="addB" >';
-	 	echo '<input type="hidden" id="maintGo" name="maintGo" value="' . $maint_go . '" /></form></p>' . PHP_EOL;
+		echo '<p><form name="dummyone" id="dummyone" action="../index.php?act=nav&nav=' . $maint_go . '&alfid=' . NULL . '" method="POST">';
+	 	echo '<input type="submit" name="submit" value="' . $buttn_array['submit'] . '" title="' . $buttn_array['title'] . '" class="addB" >';
+	 	echo '</form></p>' . PHP_EOL;
 	 }
 }
 ob_end_flush();

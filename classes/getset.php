@@ -18,7 +18,7 @@ $desarr[1] = 'foreach ($this as $key => $value) { ';
 $desarr[2] = 'unset($this->$key);';
 $desarr[3] = '}';
 $desarr[4] = '}';
-$ignore_cols_upd = array('inserted_by' => '0', 'insert_time' => '1', 'update_time' => '2', 'au_vers_numb' => '3');
+$ignore_cols_upd = array('inserted_by' => '0', 'insert_time' => '1', 'update_time' => '2');
 $ignore_cols_ins = array('insert_time' => '0', 'updated_by' => '1', 'update_time' => '2', 'au_vers_numb' => '3');
 
 while (!feof($inhandle))   {
@@ -147,23 +147,17 @@ while (!feof($inhandle))   {
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
 			}
 			if (!is_null($prime_key) )  {
-				$outstring = 'public function update_' . $nclass . '_by_id ($dbc, $' . $prime_key . ') {' . PHP_EOL;
+				$outstring = 'public function lock_' . $nclass . '_by_id ($dbc, $' . $prime_key . ') {' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
 				$outstring = '$lquery = "SELECT * FROM ' . $nclass . ' WHERE ' . $prime_key . ' = $' . $prime_key . ' FOR UPDATE";' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = '$result = pg_query($dbc, $lquery);' . PHP_EOL;
+				$outstring = 'return self::db_select($dbc, $query);' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = 'if (!$result)  {' . PHP_EOL;
+				$outstring = '}' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = 'return FALSE;' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = '}  else  {' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = 'if ( pg_num_rows($result) == 1 )  {' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = '$row = pg_fetch_assoc($result);' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = '$vers_no = $row[' . $sing_apost . 'au_vers_numb' . $sing_apost . '];' . PHP_EOL;
+			}
+			if (!is_null($prime_key) )  {
+				$outstring = 'public function update_' . $nclass . '_by_id ($dbc, $' . $prime_key . ') {' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
 				$outstring = '$uquery = "UPDATE ' . $nclass . ' SET ' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
@@ -177,7 +171,7 @@ while (!feof($inhandle))   {
 					   $rwrite = writearecord ($outhandle, $outstring, $rwrite);
 					}
 				}
-				$outstring = 'au_vers_numb = ($vers_no + 1), update_time = now()' . PHP_EOL;
+				$outstring = ' update_time = now()' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
 				$outstring = 'WHERE ' . $prime_key . ' =  $' . $prime_key . '";' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
@@ -190,12 +184,6 @@ while (!feof($inhandle))   {
 				$outstring = '}  else  {' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
 				$outstring = 'return TRUE;' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = '}' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = '}  else  {' . PHP_EOL;
-				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
-				$outstring = 'return FALSE;' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);
 				$outstring = '}' . PHP_EOL;
 				$rwrite = writearecord ($outhandle, $outstring, $rwrite);

@@ -7,7 +7,7 @@ include '../includes/headbase.php';
 <?php
 include '../includes/sessorduser.php';
 ?>
-<body onload="clock()">
+<body onload="clock();">
 <div id="container">
 <div id="content-container">
 <div id="clockdiv">&nbsp;</div>   <!-- end of clockdiv -->
@@ -15,28 +15,12 @@ include '../includes/sessorduser.php';
 ob_start();
 include 'clockdivs.php';
 include '../includes/mainnavpara.php';
+$user_id = $_SESSION['userid'];
+$_SESSION['recid'] = $user_id;
+include '../scripts_php/fetchyourdetls.php';
 ob_end_flush();
 ?>
-<div id="sideLeft">
-<div class="leftPanel1">
-<?php
-include '../scripts_php/querycurrannivs.php';
-?>
-</div>  <!-- end of leftPanel1 -->
-<div class="leftPanel2">
-<?php
-include '../scripts_php/querycurrappnts.php';
-?>
-</div>  <!-- end of leftPanel2 -->
-</div>    <!-- end of sideLeft -->
-<div id="tasklist">
-<?php
-include '../scripts_php/querycurrtasks.php';
-?>
-</div>  <!-- end of tasklist div -->
-<div id="tinyspacer">&nbsp;</div>
-
-</div>  <!-- end of mainnav div -->
+</div>   <!-- end of mainnav -->
 <div id="footer">
 <?php echo $_SESSION['footxt']; ?>
 </div>  <!-- end of footer -->

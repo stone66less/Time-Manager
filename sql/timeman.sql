@@ -243,6 +243,22 @@ TABLESPACE timedata
 ;
 CREATE UNIQUE INDEX i_em_1 ON error_messages (error_number, lang_code) TABLESPACE timeindex
 ;
+CREATE VIEW user_group_lang (
+tu_id, logon_id, logon_name,
+active_user, sysgrp_user, lang_code,
+gr_id, gr_name, view_others,
+lang_name
+) AS
+SELECT TU.tu_id, TU.logon_id, TU.logon_name,
+TU.active_user, TU.sysgrp_user, TU.lang_code,
+GR.gr_id, GR.gr_name, GR.view_others,
+SL.lang_name
+FROM supported_languages SL,
+	group_roles GR,
+	time_users TU
+WHERE TU.gr_id = GR.gr_id
+AND   TU.lang_code = SL.lang_code
+;
 INSERT INTO supported_languages
 (lang_code, lang_name, lang_inuse, char_set, dir_ection, welcome_text,
 farwell_text, footer_text, yes_text, no_text, inserted_by)

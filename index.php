@@ -102,6 +102,9 @@ if (isset($_SESSION['uname']) && isset($_SESSION['tmver']) && (strlen($_SESSION[
 								}  else  {
 									$_SESSION['recid'] = 0;
 								}
+								if ( isset($_SESSION['alfid']) )  {
+									unset($_SESSION['alfid']);
+								}
 								if ( isset($_GET['alfid']) && (strlen($_GET['alfid']) > 0) )  {
 									$_SESSION['alfid'] = $_GET['alfid'];
 								}
@@ -141,27 +144,9 @@ if (isset($_SESSION['uname']) && isset($_SESSION['tmver']) && (strlen($_SESSION[
 						$on_error = TRUE;
 					}
 				}  else  {
-					if ( isset($_GET['submit']) && (strlen($_GET['submit']) > 0) )  {
-						$act_ion = $_GET['submit'];
-						if ($act_ion = 'ADD+NEW')  {
-							if ( isset($_GET['maintGo']) && (strlen($_GET['maintGo']) > 0) )  {
-								$nav_to = (int)$_GET['maintGo'];
-								$_SESSION['recid'] = 0;
-								if ( isset($_SESSION['alfid']) )  {
-									unset($_SESSION['alfid']);
-								}
-								$form_name = menu_by_navgn ($dpgconn, $nav_to);
-							}  else  {
-								$on_error = TRUE;
-							}
-						}  else  {
-							$on_error = TRUE;
-						}
-					}  else  {
-						$on_error = TRUE;
-					}
+					$on_error = TRUE;
 				}
-			}
+			}  // force password change
 		}	// of checking if user and group are still "active".
 	}  else  {
 		$on_error = TRUE;

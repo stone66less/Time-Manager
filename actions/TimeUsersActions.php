@@ -2,31 +2,7 @@
 // actions for time_users
 require_once 'classes/TimeUsers.php';
 
-function time_user_display ($dbc, $tu_id, $maint_go)  {
-	$disp_line = NULL;
-	$tuquery = "SELECT TU.logon_id, TU.logon_name, TU.active_user,
-				TU.sysgrp_user, GR.gr_name, SL.lang_name
-				FROM supported_languages SL,
-				group_roles GR,
-				time_users TU
-				WHERE TU.gr_id = GR.gr_id
-				AND   TU.lang_code = SL.lang_code
-				AND   TU.tu_id = $tu_id";
-	$result = pg_query($dbc, $tuquery);
-	if ( $result === FALSE)  {
-		$disp_line = 'Unable to access this user ' . $tu_id;
-	}  else  {
-		$row = pg_fetch_assoc($result);
-		$logon_id = $row['logon_id'];
-		$logon_name = $row['logon_name'];
-		$gr_name = $row['gr_name'];
-		$lang_name = $row['lang_name'];
-		$active_user = ( ($row['active_user'] == 't')? 'Yes' : 'No');
-		$sysgrp_user = ( ($row['sysgrp_user'] == 't')? 'Yes' : 'No');
-		$disp_line = '<tr><td>' . $logon_id . '</td><td><a href="../index.php?act=nav&nav=' . $maint_go . '&recid=' . $tu_id. '">' . $logon_name . '</a></td><td>' . $gr_name . '</td><td>' . $lang_name . '</td><td style="text-align:center;">' . $active_user . '</td><td style="text-align:center;">' . $sysgrp_user . '</td></tr>';
-	}
-	return $disp_line;
-}
+
 
 function test_useage ($dbc, $user_id, $sys_groupie)  {
 	$no_go = 'N';
